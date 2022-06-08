@@ -1,50 +1,25 @@
-struct Tcg::Player::Category
-  include JSON::Serializable
-
-  @[JSON::Field(key: "categoryId")]
-  property category_id : Int32
-
-  property name : String
-
-  @[JSON::Field(key: "modifiedOn")]
-  property modified_on : String
-
-  @[JSON::Field(key: "displayName")]
-  property display_name : String
-
-  @[JSON::Field(key: "seoCategoryName")]
-  property seo_category_name : String
-
-  @[JSON::Field(key: "sealedLabel")]
-  property sealed_label : String?
-
-  @[JSON::Field(key: "nonSealedLabel")]
-  property non_sealed_label : String?
-
-  @[JSON::Field(key: "conditionGuideUrl")]
-  property condition_guide_url : String
-
-  @[JSON::Field(key: "isScannable")]
-  property is_scannable : Bool
-
-  property popularity : Int32
-
-  @[JSON::Field(key: "isDirect")]
-  property is_direct : Bool
-end
-
-struct Tcg::Player::Client::Categories
-  @client : Tcg::Player::Client
+struct TCGPlayer::Client::Categories
+  @client : TCGPlayer::Client
 
   def initialize(@client); end
 
   def all
     @client.refresh_token
-    @client.get("catalog/categories", klass: Tcg::Player::ResponseList(Tcg::Player::Category))
+    @client.get("catalog/categories", klass: TCGPlayer::ResponseList(TCGPlayer::Category))
   end
 
   def get(category_id)
     @client.refresh_token
-    @client.get("catalog/categories/#{category_id}", klass: Tcg::Player::ResponseList(Tcg::Player::Category))
+    @client.get("catalog/categories/#{category_id}", klass: TCGPlayer::Response(TCGPlayer::Category))
+  end
+
+  def search_manifest(category_id)
+    @client.refresh_token
+    @client.get("catalog/categories/#{category_id}/search/manifest", klass: TCGPlayer::Response(TCGPlayer::SearchManifest))
+  end
+
+  def groups(category_id)
+    @client.refresh_token
+    @client.get("catalog/categories/#{category_id}/groups", klass: TCGPlayer::ResponseList(TCGPlayer::Category::Group))
   end
 end

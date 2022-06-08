@@ -1,9 +1,9 @@
-struct Tcg::Player::Client::Catalog
-  @client : Tcg::Player::Client
+struct TCGPlayer::Client::Catalog
+  @client : TCGPlayer::Client
 
   def initialize(@client); end
 
   def category
-    Tcg::Player::Client::Categories.new(self)
+    TCGPlayer::Client::Categories.new(@client)
   end
 end

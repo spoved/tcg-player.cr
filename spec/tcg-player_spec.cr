@@ -1,4 +1,4 @@
 require "./spec_helper"
 
-describe Tcg::Player do
+describe TCGPlayer do
 end

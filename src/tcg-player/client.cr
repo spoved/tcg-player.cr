@@ -1,6 +1,6 @@
 require "spoved/api/client"
 
-class Tcg::Player::Client < Spoved::Api::Client
+class TCGPlayer::Client < Spoved::Api::Client
   @expires : Time = Time.utc(2016, 2, 15, 10, 20, 30)
   @token : String = ""
 
@@ -9,6 +9,8 @@ class Tcg::Player::Client < Spoved::Api::Client
       host:     "api.tcgplayer.com",
       api_path: "",
     }))
+
+    fetch_token
   end
 
   def fetch_token
@@ -36,8 +38,8 @@ end
 
 require "./client/**"
 
-class Tcg::Player::Client < Spoved::Api::Client
+class TCGPlayer::Client < Spoved::Api::Client
   def catalog
-    Tcg::Player::Client::Catalog.new(self)
+    TCGPlayer::Client::Catalog.new(self)
   end
 end
