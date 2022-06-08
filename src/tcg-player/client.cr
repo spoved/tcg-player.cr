@@ -34,10 +34,10 @@ class Tcg::Player::Client < Spoved::Api::Client
   end
 end
 
-require "./client/*"
+require "./client/**"
 
 class Tcg::Player::Client < Spoved::Api::Client
-  def category
-    Tcg::Player::Client::Categories.new(self)
+  def catalog
+    Tcg::Player::Client::Catalog.new(self)
   end
 end
