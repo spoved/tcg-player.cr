@@ -130,5 +130,45 @@ module TCGPlayer
       @[JSON::Field(key: "conditionId")]
       property condition_id : Int32
     end
+
+    struct Price
+      include JSON::Serializable
+
+      @[JSON::Field(key: "productId")]
+      property product_id : Int32
+
+      @[JSON::Field(key: "lowPrice")]
+      property low_price : Float64?
+
+      @[JSON::Field(key: "midPrice")]
+      property mid_price : Float64?
+
+      @[JSON::Field(key: "highPrice")]
+      property high_price : Float64?
+
+      @[JSON::Field(key: "marketPrice")]
+      property market_price : Float64?
+
+      @[JSON::Field(key: "directLowPrice")]
+      property direct_low_price : Float64?
+
+      @[JSON::Field(key: "subTypeName")]
+      property sub_type_name : String
+    end
+  end
+
+  class MarketPrice
+    include JSON::Serializable
+
+    @[JSON::Field(key: "productConditionId")]
+    property product_condition_id : Int32
+
+    property price : Float64?
+
+    @[JSON::Field(key: "lowestRange")]
+    property lowest_range : Float64?
+
+    @[JSON::Field(key: "highestRange")]
+    property highest_range : Float64?
   end
 end

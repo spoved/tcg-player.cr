@@ -52,5 +52,15 @@ describe TCGPlayer::Client::Catalog do
       data.should be_a(TCGPlayer::Response(TCGPlayer::Product::Sku))
       data.results.size.should be > 1
     end
+
+    it "#prices" do
+      data = product.prices(254781)
+      data.should be_a(TCGPlayer::Response(TCGPlayer::Product::Price))
+      data.results.size.should eq 2
+
+      data = product.prices(254781, 83461)
+      data.should be_a(TCGPlayer::Response(TCGPlayer::Product::Price))
+      data.results.size.should eq 9
+    end
   end
 end

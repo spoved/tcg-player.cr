@@ -20,4 +20,14 @@ struct TCGPlayer::Client::Products
     @client.refresh_token
     @client.get("catalog/products/#{product_id}/skus", klass: TCGPlayer::Response(TCGPlayer::Product::Sku))
   end
+
+  def prices(*product_ids)
+    @client.refresh_token
+    @client.get(%<pricing/product/#{product_ids.join(",")}>, klass: TCGPlayer::Response(TCGPlayer::Product::Price))
+  end
+
+  def sku_price(sku_id)
+    @client.refresh_token
+    @client.get("pricing/marketprices/#{sku_id}", klass: TCGPlayer::Response(TCGPlayer::MarketPrice))
+  end
 end
