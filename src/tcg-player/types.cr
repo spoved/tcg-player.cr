@@ -86,4 +86,49 @@ module TCGPlayer
       property value : String
     end
   end
+
+  struct Product
+    include JSON::Serializable
+
+    @[JSON::Field(key: "productId")]
+    property product_id : Int32
+
+    property name : String
+
+    @[JSON::Field(key: "cleanName")]
+    property clean_name : String
+
+    @[JSON::Field(key: "imageUrl")]
+    property image_url : String
+
+    @[JSON::Field(key: "categoryId")]
+    property category_id : Int32
+
+    @[JSON::Field(key: "groupId")]
+    property group_id : Int32
+
+    property url : String
+
+    @[JSON::Field(key: "modifiedOn")]
+    property modified_on : String
+
+    struct Sku
+      include JSON::Serializable
+
+      @[JSON::Field(key: "skuId")]
+      property sku_id : Int32
+
+      @[JSON::Field(key: "productId")]
+      property product_id : Int32
+
+      @[JSON::Field(key: "languageId")]
+      property language_id : Int32
+
+      @[JSON::Field(key: "printingId")]
+      property printing_id : Int32
+
+      @[JSON::Field(key: "conditionId")]
+      property condition_id : Int32
+    end
+  end
 end

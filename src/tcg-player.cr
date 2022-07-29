@@ -1,8 +1,5 @@
-# TODO: Write documentation for `TCGPlayer`
 module TCGPlayer
-  VERSION = "0.1.0"
-
-  # TODO: Put your code here
+  VERSION = {{ `shards version "#{__DIR__}"`.chomp.stringify }}
 end
 
 require "./tcg-player/*"
